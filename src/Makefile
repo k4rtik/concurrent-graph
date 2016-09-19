@@ -2,10 +2,13 @@ CC = clang
 CXX = clang++
 
 ## Debug Options
-DFLAGS = -fsanitize=address -g -D_GLIBCXX_DEBUG
+DFLAGS = #-fsanitize=address -g -D_GLIBCXX_DEBUG
 
 ## Optimization Options
 OFLAGS  = -O3 -fstack-protector-all
+
+## Machine Dependent Options
+MFLAGS = #-mcmodel=large
 
 ## Code Generation Options
 GFLAGS  = -ftrapv
@@ -39,7 +42,7 @@ GNUWFLAGS += -Wtrampolines -Wunsafe-loop-optimizations
 # GNU, C only (enable manually if you switch to gcc/g++ as compiler)
 GNUCWFLAGS = -Wtraditional-conversion -Wunsuffixed-float-constants
 
-COMMONFLAGS = $(OFLAGS) $(GFLAGS) $(PFLAGS) $(WFLAGS) $(DFLAGS)
+COMMONFLAGS = $(OFLAGS) $(GFLAGS) $(PFLAGS) $(WFLAGS) $(DFLAGS) $(MFLAGS)
 
 CFLAGS    = -std=c11   $(COMMONFLAGS) $(CWFLAGS)
 CXXFLAGS  = -std=c++11 $(COMMONFLAGS)
