@@ -76,21 +76,21 @@ static void periodic_snapshot(unsigned useconds) {
 }
 
 static const char *test_multi_thread_insert() {
-    static pthread_t T[NTHREADS];
+    const int NWTHREADS = NTHREADS - 1; // number of worker threads
+    static pthread_t snapshot_thread, T[NWTHREADS];
     pthread_key_create(&tid_key, 0);
 
-    for (size_t i = 0; i < NTHREADS - 1; i++) {
+    for (size_t i = 0; i < NWTHREADS; i++) {
         assert(0 == pthread_create(&T[i], 0, (void *(*)(void *))multiinsert,
                                    (void *)i));
         assert(0 == pthread_detach(T[i]));
     }
 
-    // snapshot thread
-    assert(0 == pthread_create(&T[NTHREADS - 1], 0,
+    assert(0 == pthread_create(&snapshot_thread, 0,
                                (void *(*)(void *))periodic_snapshot,
                                (void *)5000000)); // 0.5sec
 
-    assert(0 == pthread_join(T[NTHREADS - 1], 0));
+    assert(0 == pthread_join(snapshot_thread, 0));
     // TODO workaround for clean exit until I find a way to exit looping threads
     exit(0);
 
