@@ -11,7 +11,7 @@
 using namespace std;
 
 enum { /* maximum sizes */
-       NVERTEX = 1048576,
+       NVERTEX = 65536,
        NTHREADS = 4, // 1 snapshot thread and rest worker threads
 };
 
