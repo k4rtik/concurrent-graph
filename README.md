@@ -1,5 +1,8 @@
 # Concurrent Graph
 
+## Project Tracking
+Using GitHub's new [projects tool](../../projects/1).
+
 ## Build
 Run `make` from `src` directory.
 
