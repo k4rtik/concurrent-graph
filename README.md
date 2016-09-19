@@ -7,7 +7,7 @@ Using GitHub's new [projects tool](../../projects/1).
 Run `make` from `src` directory.
 
 ## Test Data
-Can be generated using `graph_gen` binary included:
+Can be generated using the included `graph_gen` binary:
 ```bash
 $ cd data
 $ ../bin/graph_gen 65500 9825000 | ../bin/graph_gen > g_65500_9825000
@@ -20,11 +20,11 @@ $ split ../data/g_65500_9825000 -n l/3 # should create xaa, xab, xac
 - Needs a lot more testing.
 - Increasing `NVERTEX` to over 65536 on my test machine results in an unresponsive system depending on system load.
 - It is wise to [enable Linux sysrq key combinations](http://askubuntu.com/questions/4408/what-should-i-do-when-ubuntu-freezes/36717#36717) during testing. In case of a hang, I can kill the most expensive process (careful, could be chrome or any other important process) using `Alt` + `SysReq` + `F`.
-- The problem described in last two points can exacerbate if debugging options like the following are enabled in `Makefile`:
-```
-DFLAGS = -fsanitize=address -g -D_GLIBCXX_DEBUG
-```
-Address Sanitizer, specifically, will spawn its own threads further affecting system load.
+- The problem described in last two points can exacerbate if debugging options like the following are enabled in `Makefile`:  
+  ```
+  DFLAGS = -fsanitize=address -g -D_GLIBCXX_DEBUG
+  ```  
+  Address Sanitizer, specifically, will spawn its own threads further affecting system load.
 
 # Test Platform
 ## CPU
