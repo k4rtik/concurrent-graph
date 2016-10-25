@@ -2,10 +2,10 @@ CC = clang
 CXX = clang++
 
 ## Debug Options
-DFLAGS = #-fsanitize=address -g -D_GLIBCXX_DEBUG
+DFLAGS = -fsanitize=thread -g -D_GLIBCXX_DEBUG
 
 ## Optimization Options
-OFLAGS  = -O3 -fstack-protector-all
+OFLAGS  = -O1 -fstack-protector-all
 
 ## Machine Dependent Options
 MFLAGS = #-mcmodel=large

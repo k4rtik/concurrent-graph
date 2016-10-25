@@ -88,7 +88,7 @@ static const char *test_multi_thread_insert() {
 
     assert(0 == pthread_create(&snapshot_thread, 0,
                                (void *(*)(void *))periodic_snapshot,
-                               (void *)5000000)); // 0.5sec
+                               (void *)5000));
 
     assert(0 == pthread_join(snapshot_thread, 0));
     // TODO workaround for clean exit until I find a way to exit looping threads
