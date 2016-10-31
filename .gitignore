@@ -29,3 +29,6 @@
 *.app
 
 data
+
+# editor swaps
+*.swp
