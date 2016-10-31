@@ -27,7 +27,7 @@ WFLAGS += -Wredundant-decls -Wstack-protector -Wstrict-overflow=5
 WFLAGS += -Wswitch-default -Wswitch-enum -Wundef -Wvla -Wwrite-strings
 
 # For testing only, comment out for production
-WFLAGS += -Wshadow #-Werror
+WFLAGS += -Wshadow -Werror
 
 ### C only
 CWFLAGS  = -Wc++-compat
@@ -39,7 +39,7 @@ CWFLAGS += -Wstrict-prototypes
 GNUWFLAGS  = -Wlogical-op -Wnormalized=nfc -Wpacked-bitfield-compat -Wsync-nand
 GNUWFLAGS += -Wtrampolines -Wunsafe-loop-optimizations
 
-# GNU, C only (enable manually if you switch to gcc/g++ as compiler)
+# GNU, C only (enable manually if you switch to gcc as compiler)
 GNUCWFLAGS = -Wtraditional-conversion -Wunsuffixed-float-constants
 
 COMMONFLAGS = $(OFLAGS) $(GFLAGS) $(PFLAGS) $(WFLAGS) $(DFLAGS) $(MFLAGS)
