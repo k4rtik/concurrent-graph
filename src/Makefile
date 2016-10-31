@@ -8,7 +8,7 @@ DFLAGS = -fsanitize=thread -g -D_GLIBCXX_DEBUG
 OFLAGS  = -O1 -fstack-protector-all
 
 ## Machine Dependent Options
-MFLAGS = #-mcmodel=large
+MFLAGS = -mcmodel=medium
 
 ## Code Generation Options
 GFLAGS  = -ftrapv
