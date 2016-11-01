@@ -26,7 +26,7 @@ static void init_node(Node *n) {
 
 static Vertex *create_or_get_vertex(Graph *g, ID id) {
     Vertex *v;
-    if (g->nodetab[id].vertex) {
+    if (g->nodetab[id].vertex || !g->nodetab[id].log.empty()) {
         pthread_mutex_lock(&g->nodetab[id].nm);
         v = get_vertex(g, id);
         pthread_mutex_unlock(&g->nodetab[id].nm);
@@ -38,7 +38,7 @@ static Vertex *create_or_get_vertex(Graph *g, ID id) {
 
 static LogEntry *create_or_get_log(Graph *g, ID id) {
     LogEntry *le;
-    if (g->nodetab[id].vertex) {
+    if (g->nodetab[id].vertex || !g->nodetab[id].log.empty()) {
         pthread_mutex_lock(&g->nodetab[id].nm);
         le = get_log(g, id);
         pthread_mutex_unlock(&g->nodetab[id].nm);
@@ -128,6 +128,7 @@ static void cleanup_vertex(Graph *g, ID id) {
 /*------------------------ Low-level API definitions -------------------------*/
 /*----------------------------------------------------------------------------*/
 
+// should only be called if a log doesn't already exist
 Vertex *create_vertex(Graph *g, ID id) {
     Vertex *v = new Vertex();
     v->id = id;
@@ -144,6 +145,7 @@ Vertex *create_vertex(Graph *g, ID id) {
     return v;
 }
 
+// should only be called if a vertex doesn't already exist
 LogEntry *create_log(Graph *g, ID id) {
     Vertex *v = new Vertex();
     v->id = id;
